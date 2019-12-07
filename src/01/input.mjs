@@ -1,11 +1,4 @@
-// https://adventofcode.com/2019/day/1
-
-import {
-  computeFuelRequired,
-  computeTotalFuelRequired
-} from './index.mjs';
-
-const inputs = [
+export default [
   54296,
   106942,
   137389,
@@ -105,12 +98,5 @@ const inputs = [
   68502,
   92440,
   50369,
-  84878,
+  84878
 ];
-
-const sum = inputs.reduce(
-  (sum, input) => sum + computeTotalFuelRequired(input),
-  0
-);
-
-console.log(sum);
