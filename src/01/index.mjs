@@ -11,3 +11,17 @@ export function computeTotalFuelRequired(mass) {
   }
   return total;
 }
+
+
+
+// https://adventofcode.com/2019/day/1
+import input from './input.mjs';
+
+if (process.env.NODE_ENV !== 'test') {
+  const sum = input.reduce(
+    (sum, input) => sum + computeTotalFuelRequired(input),
+    0
+  );
+
+  console.log(sum);
+}
