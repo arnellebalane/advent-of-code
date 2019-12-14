@@ -1,5 +1,5 @@
 import test from 'ava';
-import { evaluateProgram, DEFAULT_INPUT } from './index.mjs';
+import { evaluateProgram } from './index.mjs';
 
 test('evaluateProgram()', t => {
   t.deepEqual(
@@ -27,16 +27,16 @@ test('evaluateProgram()', t => {
     [1002, 4, 3, 4, 99]
   );
   t.deepEqual(
-    evaluateProgram([3, 0, 99]),
-    [DEFAULT_INPUT, 0, 99]
+    evaluateProgram([3, 0, 99], () => 5),
+    [5, 0, 99]
   );
   t.deepEqual(
     evaluateProgram([4, 2, 99]),
     [99, 2, 99]
   );
   t.deepEqual(
-    evaluateProgram([3, 5, 4, 5, 99, 1]),
-    [DEFAULT_INPUT, 5, 4, 5, 99, DEFAULT_INPUT]
+    evaluateProgram([3, 5, 4, 5, 99, 1], () => 5),
+    [5, 5, 4, 5, 99, 5]
   );
 });
 
