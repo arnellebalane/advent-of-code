@@ -1,6 +1,10 @@
 import test from 'ava';
-import { findPairWithSum } from './index.mjs';
+import { findTwoWithSum, findThreeWithSum } from './index.mjs';
 
-test('findPairWithSum()', (t) => {
-  t.deepEqual(findPairWithSum([1721, 979, 366, 299, 675, 1456], 2020), [1721, 299]);
+test('findTwoWithSum()', (t) => {
+  t.deepEqual(findTwoWithSum([1721, 979, 366, 299, 675, 1456], 2020), [1721, 299]);
+});
+
+test('findThreeWithSum()', (t) => {
+  t.deepEqual(findThreeWithSum([1721, 979, 366, 299, 675, 1456], 2020), [979, 366, 675]);
 });
