@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ava"
+    "test": "NODE_ENV=test ava",
+    "day": "node index.mjs"
   },
   "keywords": [],
   "author": "Arnelle Balane <arnellebalane@gmail.com> (https://arnellebalane.com/)",

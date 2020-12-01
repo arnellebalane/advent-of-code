@@ -1,18 +1,6 @@
 import test from 'ava';
-import {
-  computeFuelRequired,
-  computeTotalFuelRequired
-} from './index.mjs';
+import { findPairWithSum } from './index.mjs';
 
-test('computeFuelRequired()', t => {
-  t.is(computeFuelRequired(12), 2);
-  t.is(computeFuelRequired(14), 2);
-  t.is(computeFuelRequired(1969), 654);
-  t.is(computeFuelRequired(100756), 33583);
-});
-
-test('computeTotalFuelRequired()', t => {
-  t.is(computeTotalFuelRequired(14), 2);
-  t.is(computeTotalFuelRequired(1969), 966);
-  t.is(computeTotalFuelRequired(100756), 50346);
+test('findPairWithSum()', (t) => {
+  t.deepEqual(findPairWithSum([1721, 979, 366, 299, 675, 1456], 2020), [1721, 299]);
 });
