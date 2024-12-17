@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test:2020": "ava 2020"
+    "test:2020": "ava 2020",
+    "test": ""
   },
   "keywords": [],
   "author": "Arnelle Balane <arnellebalane@gmail.com> (https://arnellebalane.com/)",
