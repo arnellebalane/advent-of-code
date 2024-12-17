@@ -1,9 +1,5 @@
 export default {
-  require: ['esm'],
+    files: ['**/**/tests.js'],
 
-  files: [
-    'src/**/tests.mjs'
-  ],
-
-  extensions: ['mjs']
+    extensions: ['js'],
 };
