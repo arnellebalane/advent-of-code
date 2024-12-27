@@ -1,0 +1,8 @@
+.aoc-lists {
+    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+}
+
+.aoc-distance {
+    box-sizing: content-box;
+    width: 4ch;
+}

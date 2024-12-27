@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>Advent of Code 2024 - Day 1</title>
+
+        <link rel="stylesheet" href="index.css" />
+    </head>
+
+    <body class="font-mono text-xs text-slate-700">
+        <header class="flex gap-8 p-5 pb-0">
+            <p class="uppercase">
+                Total Distance: <span class="aoc-total-distance inline-block py-1 px-2 rounded bg-slate-300">-</span>
+            </p>
+            <p class="uppercase">
+                Similarity Score:
+                <span class="aoc-similarity-score inline-block py-1 px-2 rounded bg-teal-400">-</span>
+            </p>
+            <a
+                href="https://adventofcode.com/2024/day/1"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block py-1 px-2 ml-auto rounded uppercase bg-slate-100 hover:bg-blue-100"
+            >
+                Puzzle Link
+            </a>
+        </header>
+        <div class="aoc-lists grid gap-1 p-5"></div>
+
+        <template id="pair">
+            <div class="aoc-pair flex gap-4 py-1 px-2 rounded bg-slate-100 cursor-pointer">
+                <p class="aoc-first-item py-1 px-2">{itemOne}</p>
+                <p class="aoc-second-item py-1 px-2">{itemTwo}</p>
+                <p class="aoc-distance py-1 px-2 rounded bg-slate-300 text-center">{distance}</p>
+                <p class="aoc-similarity-score py-1 px-2 rounded">{similarityScore}</p>
+            </div>
+        </template>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="browser.js" type="module"></script>
+    </body>
+</html>
