@@ -1,5 +1,9 @@
-import { URL } from 'node:url';
-import { readFile } from 'node:fs/promises';
+const search = new URLSearchParams(location.search);
+const shouldAnimate = search.has('animate');
+
+const $puzzle = document.querySelector('.aoc-puzzle');
+const $occurrences = document.querySelector('.aoc-occurrences');
+const $letterTemplate = document.querySelector('template#letter');
 
 class WordSearch {
     constructor(input) {
@@ -7,6 +11,14 @@ class WordSearch {
         this.rows = lines.length;
         this.cols = lines[0].length;
         this.input = lines.join('');
+
+        $puzzle.style.gridTemplateColumns = `repeat(${this.cols}, 1fr)`;
+        $puzzle.style.gridTemplateRows = `repeat(${this.rows}, 1fr)`;
+        for (let i = 0; i < this.input.length; i++) {
+            const $letter = $letterTemplate.content.cloneNode(true);
+            $letter.querySelector('.aoc-letter').textContent = this.input.charAt(i);
+            $puzzle.appendChild($letter);
+        }
     }
 
     toCoordinates(index) {
@@ -23,10 +35,16 @@ class WordSearch {
         return this.input.charAt(this.toIndex(row, col));
     }
 
-    countOccurences() {
+    highlightCharAt(row, col, colorClass) {
+        const index = this.toIndex(row, col);
+        const $letter = $puzzle.querySelector(`.aoc-letter:nth-child(${index + 1})`);
+        $letter.classList.add(colorClass);
+    }
+
+    async countOccurrences() {
         const query = 'XMAS';
         const length = query.length;
-        let occurences = 0;
+        let occurrences = 0;
 
         for (let i = 0; i < this.input.length; i++) {
             const letter = this.input.charAt(i);
@@ -41,8 +59,11 @@ class WordSearch {
                     this.getInputCharAt(row - 2, col) +
                     this.getInputCharAt(row - 3, col);
                 if (word === query) {
-                    console.log('t', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-pink-300');
+                    this.highlightCharAt(row - 1, col, 'bg-pink-300');
+                    this.highlightCharAt(row - 2, col, 'bg-pink-300');
+                    this.highlightCharAt(row - 3, col, 'bg-pink-300');
                 }
             }
             if (row >= length - 1 && col >= length - 1) {
@@ -53,8 +74,11 @@ class WordSearch {
                     this.getInputCharAt(row - 2, col - 2) +
                     this.getInputCharAt(row - 3, col - 3);
                 if (word === query) {
-                    console.log('tl', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-fuchsia-300');
+                    this.highlightCharAt(row - 1, col - 1, 'bg-fuchsia-300');
+                    this.highlightCharAt(row - 2, col - 2, 'bg-fuchsia-300');
+                    this.highlightCharAt(row - 3, col - 3, 'bg-fuchsia-300');
                 }
             }
             if (row >= length - 1 && col < this.cols - length) {
@@ -65,8 +89,11 @@ class WordSearch {
                     this.getInputCharAt(row - 2, col + 2) +
                     this.getInputCharAt(row - 3, col + 3);
                 if (word === query) {
-                    console.log('tr', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-violet-300');
+                    this.highlightCharAt(row - 1, col + 1, 'bg-violet-300');
+                    this.highlightCharAt(row - 2, col + 2, 'bg-violet-300');
+                    this.highlightCharAt(row - 3, col + 3, 'bg-violet-300');
                 }
             }
             if (col >= length - 1) {
@@ -77,8 +104,11 @@ class WordSearch {
                     this.getInputCharAt(row, col - 2) +
                     this.getInputCharAt(row, col - 3);
                 if (word === query) {
-                    console.log('l', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-blue-300');
+                    this.highlightCharAt(row, col - 1, 'bg-blue-300');
+                    this.highlightCharAt(row, col - 2, 'bg-blue-300');
+                    this.highlightCharAt(row, col - 3, 'bg-blue-300');
                 }
             }
             if (col < this.cols - length) {
@@ -89,8 +119,11 @@ class WordSearch {
                     this.getInputCharAt(row, col + 2) +
                     this.getInputCharAt(row, col + 3);
                 if (word === query) {
-                    console.log('r', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-teal-300');
+                    this.highlightCharAt(row, col + 1, 'bg-teal-300');
+                    this.highlightCharAt(row, col + 2, 'bg-teal-300');
+                    this.highlightCharAt(row, col + 3, 'bg-teal-300');
                 }
             }
             if (row < this.rows - length) {
@@ -101,8 +134,11 @@ class WordSearch {
                     this.getInputCharAt(row + 2, col) +
                     this.getInputCharAt(row + 3, col);
                 if (word === query) {
-                    console.log('b', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-green-300');
+                    this.highlightCharAt(row + 1, col, 'bg-green-300');
+                    this.highlightCharAt(row + 2, col, 'bg-green-300');
+                    this.highlightCharAt(row + 3, col, 'bg-green-300');
                 }
             }
             if (row < this.rows - length && col >= length - 1) {
@@ -113,8 +149,11 @@ class WordSearch {
                     this.getInputCharAt(row + 2, col - 2) +
                     this.getInputCharAt(row + 3, col - 3);
                 if (word === query) {
-                    console.log('bl', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-yellow-200');
+                    this.highlightCharAt(row + 1, col - 1, 'bg-yellow-200');
+                    this.highlightCharAt(row + 2, col - 2, 'bg-yellow-200');
+                    this.highlightCharAt(row + 3, col - 3, 'bg-yellow-200');
                 }
             }
             if (row < this.rows - length && col < this.cols - length) {
@@ -125,17 +164,25 @@ class WordSearch {
                     this.getInputCharAt(row + 2, col + 2) +
                     this.getInputCharAt(row + 3, col + 3);
                 if (word === query) {
-                    console.log('br', row, col);
-                    occurences++;
+                    occurrences++;
+                    this.highlightCharAt(row, col, 'bg-orange-300');
+                    this.highlightCharAt(row + 1, col + 1, 'bg-orange-300');
+                    this.highlightCharAt(row + 2, col + 2, 'bg-orange-300');
+                    this.highlightCharAt(row + 3, col + 3, 'bg-orange-300');
                 }
+            }
+
+            $occurrences.textContent = occurrences;
+            if (shouldAnimate) {
+                await new Promise((resolve) => setTimeout(resolve, 0));
             }
         }
 
-        return occurences;
+        return occurrences;
     }
 }
 
-const input = await readFile(new URL('input.txt', import.meta.url), 'utf8');
+const response = await fetch('./input.txt');
+const input = await response.text();
 const puzzle = new WordSearch(input);
-const occurences = puzzle.countOccurences();
-console.log({ occurences });
+await puzzle.countOccurrences();
