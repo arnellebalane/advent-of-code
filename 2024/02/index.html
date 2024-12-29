@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf8" />
+        <title>Advent of Code 2024 - Day 2</title>
+
+        <link rel="stylesheet" href="index.css" />
+    </head>
+
+    <body class="font-mono text-xs text-slate-700">
+        <header class="flex gap-8 p-5 pb-0">
+            <p class="uppercase">
+                Total Reports: <span class="aoc-total-reports inline-block py-1 px-2 rounded bg-slate-300">-</span>
+            </p>
+            <p class="uppercase">
+                Safe Reports: <span class="aoc-safe-reports inline-block py-1 px-2 rounded bg-teal-300">-</span>
+            </p>
+            <p class="uppercase">
+                Unsafe Reports: <span class="aoc-unsafe-reports inline-block py-1 px-2 rounded bg-red-300">-</span>
+            </p>
+            <a
+                href="https://adventofcode.com/2024/day/2"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block py-1 px-2 ml-auto rounded uppercase bg-slate-100 hover:bg-blue-100"
+            >
+                Puzzle Link
+            </a>
+        </header>
+        <div class="aoc-reports grid gap-y-1 gap-x-5 p-5"></div>
+
+        <template id="report">
+            <div class="aoc-report flex p-1 rounded bg-slate-100">
+                <div class="aoc-levels flex gap-1"></div>
+                <p class="aoc-assessment ml-auto py-1 px-2 uppercase"></p>
+            </div>
+        </template>
+        <template id="level">
+            <p class="aoc-level box-content inline-block py-1 px-2 rounded text-center bg-slate-300">{level}</p>
+        </template>
+        <template id="delta">
+            <p class="aoc-delta box-content py-1 px-2 text-center text-slate-600"></p>
+        </template>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="browser.js" type="module"></script>
+    </body>
+</html>

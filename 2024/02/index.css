@@ -1,0 +1,8 @@
+.aoc-reports {
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+}
+
+.aoc-level,
+.aoc-delta {
+    width: 2ch;
+}
